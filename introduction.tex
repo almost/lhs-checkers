@@ -1,0 +1,60 @@
+This document describes--and in fact is--a program to play checkers
+written in the Haskell\footnote{Haskell is a lazy functional language:
+  \url{http://www.haskell.org/}} programming language.  This document
+is a \emph{Literate Haskell} program, this means that its source code
+is both a valid a \LaTeX{} document and a valid Haskell program.
+
+gtk2hs\footnote{\url{http://www.haskell.org/gtk2hs/}} is used for the
+GUI so it should have no problems running on Windows, OSX or any
+flavour of Unix. However it has only been tested on Linux (Ubuntu
+7.10 with GHC 6.6.1).
+
+The modules that make up the program are:
+
+\begin{description}
+\item[Board] \myref{module:Board} Defines a data structure to represent
+  a checkers board. It also defines data structures to represent
+  locations on the board and ``location deltas''.
+\item[Hops] \myref{module:Hops} Defines ``hops'' which are the moves
+  which make up a turn.
+\item[GameState] \myref{module:GameState} Defines a game state data
+  structure, a successors function, and, a function to check if either
+  side has won.
+\item[Negamax] \myref{module:Negamax} Defines a generic version of the
+  Negamax algorithm, not specific to the game of checkers.
+\item[EvalFuns] \myref{module:EvalFuns} Defines static evaluation
+  functions and functions to combine them. These can be used as
+  heuristic functions for the Negamax algorithm.
+\item[Strategies] \myref{module:Strategies} Uses the Negamax algorithm
+  and the evaluation functions defined in \verb!EvalFuns! to create an
+  AI strategy.
+\item[ANNEvalFun] \myref{module:ANNEvalFun} An alternative method of
+  creating evaluation functions using a multi-layer feed-forward
+  Artificial Neural Network (ANN).
+\item[EvolveANN] \myref{module:EvolveANN} A Genetic Algorithm to
+  evolve a set of weights for the ANN defined in \verb!ANNEvalFun!.
+\item[GUI] \myref{module:GUI} A GUI based on the GTK tool kit. This acts as the main module of the program.
+\end{description}
+
+\begin{samepage}
+The program can be built using the GHC\footnote{The Glasgow Haskell
+  Compiler: \url{http://www.haskell.org/ghc/}} Haskell Compiler but
+may well work with Hugs\footnote{http://www.haskell.org/hugs/} as
+well. The command to build the program for normal GUI operation is:
+
+\begin{verbatim}
+ghc -O2 --make GUI.lhs
+\end{verbatim}
+\end{samepage}
+
+Before the PDF version of the program source code can be generated all
+\emph{.lhs} files must be sym-linked so that they can also be accessed
+using the \emph{.tex} extension. Once this is done the following
+commands can be run.
+
+\begin{verbatim}
+pdflatex checkers.tex
+makeindex checkers
+pdflatex checkers.tex
+\end{verbatim}
+

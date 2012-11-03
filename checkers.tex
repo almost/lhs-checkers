@@ -1,0 +1,27 @@
+\documentclass[a4]{report}
+\usepackage{haskell}
+\title{Check This!\\A Literate Haskell Program to Play Checkers}
+\author{Thomas Parslow\\twp21@sussex.ac.uk}
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\chapter{Introduction}
+\input{introduction}
+\chapter{Game and Board Representation}
+\input{Board}
+\input{Hops}
+\input{GameState}
+\chapter{Simple AI Player}
+\input{Negamax}
+\input{EvalFuns}
+\input{Strategies}
+\chapter{ANNs and GAs}
+\input{ANNEvalFun}
+\input{EvolveANN}
+\chapter{GUI}
+\input{GUI}
+
+\printindex
+\end{document}
